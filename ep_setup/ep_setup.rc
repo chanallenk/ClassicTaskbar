@@ -104,6 +104,19 @@ IDR_MS_WEBVIEW2_LOADER  RCDATA             "..\\build\\Release\\WebView2Loader.d
 
 IDR_EP_STARTMENU        RCDATA             "..\\build\\Release\\ep_startmenu.dll"
 
+
+IDR_CSS_LAUNCHER        RCDATA             "..\\build\\Release\\publish\\SettingsLauncher.exe"
+
+IDR_CSS_LAUNCHER_PDB    RCDATA             "..\\build\\Release\\publish\\SettingsLauncher.pdb"
+
+IDR_CSS_WINAPP_RUNTIME  RCDATA             "..\\build\\Release\\publish\\Microsoft.WindowsAppRuntime.Bootstrap.dll"
+
+IDR_CSS_RESOURCES       RCDATA             "..\\build\\Release\\publish\\resources.pri"
+
+IDR_CSS_APPSETTINGS     RCDATA             "..\\build\\Release\\publish\\appsettings.json"
+
+IDR_CSS_LAUNCH_CORE_PDB RCDATA             "..\\build\\Release\\publish\\SettingsLauncher.Core.pdb"
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

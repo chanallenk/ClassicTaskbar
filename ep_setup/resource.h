@@ -9,6 +9,12 @@
 #define IDR_EP_WEATHER_STUB             107
 #define IDR_MS_WEBVIEW2_LOADER          201
 #define IDR_EP_STARTMENU                108
+#define IDR_CSS_LAUNCHER				301
+#define IDR_CSS_LAUNCHER_PDB			302
+#define IDR_CSS_WINAPP_RUNTIME			303
+#define IDR_CSS_RESOURCES				304
+#define IDR_CSS_APPSETTINGS				305
+#define IDR_CSS_LAUNCH_CORE_PDB			306
 
 
 // Next default values for new objects

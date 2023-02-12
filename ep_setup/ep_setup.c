@@ -517,6 +517,87 @@ int WINAPI wWinMain(
         {
             GetCurrentDirectoryW(MAX_PATH, wszPath);
         }
+
+
+        if (bOk)
+        {
+            wcscat_s(wszPath, MAX_PATH, L"\\SettingsLauncher.exe");
+            bOk = InstallResource(TRUE, hInstance, IDR_CSS_LAUNCHER, wszPath);
+        }
+        if (argc >= 2)
+        {
+            wcsncpy_s(wszPath, MAX_PATH, wargv[1], MAX_PATH);
+        }
+        else
+        {
+            GetCurrentDirectoryW(MAX_PATH, wszPath);
+        }
+        if (bOk)
+        {
+            wcscat_s(wszPath, MAX_PATH, L"\\SettingsLauncher.pdb");
+            bOk = InstallResource(TRUE, hInstance, IDR_CSS_LAUNCHER_PDB, wszPath);
+        }
+        if (argc >= 2)
+        {
+            wcsncpy_s(wszPath, MAX_PATH, wargv[1], MAX_PATH);
+        }
+        else
+        {
+            GetCurrentDirectoryW(MAX_PATH, wszPath);
+        }
+        if (bOk)
+        {
+            wcscat_s(wszPath, MAX_PATH, L"\\Microsoft.WindowsAppRuntime.Bootstrap.dll");
+            bOk = InstallResource(TRUE, hInstance, IDR_CSS_WINAPP_RUNTIME, wszPath);
+        }
+        if (argc >= 2)
+        {
+            wcsncpy_s(wszPath, MAX_PATH, wargv[1], MAX_PATH);
+        }
+        else
+        {
+            GetCurrentDirectoryW(MAX_PATH, wszPath);
+        }
+        if (bOk)
+        {
+            wcscat_s(wszPath, MAX_PATH, L"\\resources.pri");
+            bOk = InstallResource(TRUE, hInstance, IDR_CSS_RESOURCES, wszPath);
+        }
+        if (argc >= 2)
+        {
+            wcsncpy_s(wszPath, MAX_PATH, wargv[1], MAX_PATH);
+        }
+        else
+        {
+            GetCurrentDirectoryW(MAX_PATH, wszPath);
+        }
+        if (bOk)
+        {
+            wcscat_s(wszPath, MAX_PATH, L"\\appsettings.json");
+            bOk = InstallResource(TRUE, hInstance, IDR_CSS_APPSETTINGS, wszPath);
+        }
+        if (argc >= 2)
+        {
+            wcsncpy_s(wszPath, MAX_PATH, wargv[1], MAX_PATH);
+        }
+        else
+        {
+            GetCurrentDirectoryW(MAX_PATH, wszPath);
+        }
+        if (bOk)
+        {
+            wcscat_s(wszPath, MAX_PATH, L"\\SettingsLauncher.Core.pdb");
+            bOk = InstallResource(TRUE, hInstance, IDR_CSS_LAUNCH_CORE_PDB, wszPath);
+        }
+        if (argc >= 2)
+        {
+            wcsncpy_s(wszPath, MAX_PATH, wargv[1], MAX_PATH);
+        }
+        else
+        {
+            GetCurrentDirectoryW(MAX_PATH, wszPath);
+        }
+
         if (bOk)
         {
             wcscat_s(wszPath, MAX_PATH, L"\\wincorlib.dll");
@@ -828,6 +909,44 @@ int WINAPI wWinMain(
             wcscat_s(wszPath, MAX_PATH, L"\\ep_dwm.exe");
             bOk = InstallResource(bInstall, hInstance, IDR_EP_DWM, wszPath);
         }
+
+        if (bOk)
+        {
+            PathRemoveFileSpecW(wszPath);
+            wcscat_s(wszPath, MAX_PATH, L"\\SettingsLauncher.exe");
+            bOk = InstallResource(bInstall, hInstance, IDR_CSS_LAUNCHER, wszPath);
+        }
+        if (bOk)
+        {
+            PathRemoveFileSpecW(wszPath);
+            wcscat_s(wszPath, MAX_PATH, L"\\SettingsLauncher.pdb");
+            bOk = InstallResource(bInstall, hInstance, IDR_CSS_LAUNCHER_PDB, wszPath);
+        }
+        if (bOk)
+        {
+            PathRemoveFileSpecW(wszPath);
+            wcscat_s(wszPath, MAX_PATH, L"\\Microsoft.WindowsAppRuntime.Bootstrap.dll");
+            bOk = InstallResource(bInstall, hInstance, IDR_CSS_WINAPP_RUNTIME, wszPath);
+        }
+        if (bOk)
+        {
+            PathRemoveFileSpecW(wszPath);
+            wcscat_s(wszPath, MAX_PATH, L"\\resources.pri");
+            bOk = InstallResource(bInstall, hInstance, IDR_CSS_RESOURCES, wszPath);
+        }
+        if (bOk)
+        {
+            PathRemoveFileSpecW(wszPath);
+            wcscat_s(wszPath, MAX_PATH, L"\\appsettings.json");
+            bOk = InstallResource(bInstall, hInstance, IDR_CSS_APPSETTINGS, wszPath);
+        }
+        if (bOk)
+        {
+            PathRemoveFileSpecW(wszPath);
+            wcscat_s(wszPath, MAX_PATH, L"\\SettingsLauncher.Core.pdb");
+            bOk = InstallResource(bInstall, hInstance, IDR_CSS_LAUNCH_CORE_PDB, wszPath);
+        }
+
         if (bInstall)
         {
             if (bOk)
