@@ -2,6 +2,46 @@
 
 This document includes the same release notes as in the [Releases](https://github.com/valinet/ExplorerPatcher/releases) section on GitHub.
 
+## 22621.1413.54
+
+Tested on OS build 22621.1413.
+
+Please make sure you are connected to the Internet while installing, the application might need to perform one-time downloads for several resources in order to enable full functionality.
+
+#### Details
+
+##### 1
+
+* Windows 10 taskbar: Fixed a bug that made the following functionalities have issues or stop working: Task View button, `Win-Tab`, `Alt-Tab` after pressing `Win-Tab`, flyouts alignment, notification center alignment, `Win` key shortcuts on OS build 22621.1413+ (thanks @CthRio for the heads up). (0ad140c)
+* Setup: Fixed a bug that prevented File Explorer from starting automatically after servicing the application if the installer run using different credentials than the logged on user (thanks @Abestanis). (1738b45)
+* Weather: Fixed widget icons when using Microsoft icon pack. (2a1aad2)
+* Implemented a mechanism to stop repeated crashes. (d7e5b7d)
+
+##### 2
+
+* Weather: Fixed a bug that prevented the widget from displaying correctly. (a5e5287)
+
+##### 3
+
+* Windows 11 Start menu: Better enforcement for disabling the "Recommended" section. (27a8fd9)
+
+## 22621.1344.53
+
+Tested on OS builds 22621.1344, 22000.1574, and 19044.1466.
+
+Please make sure you are connected to the Internet while installing, the application might need to perform one-time downloads for several resources in order to enable full functionality.
+
+#### Details
+
+##### 1
+
+* Windows 10 taskbar: Fixed a bug that crashed `explorer` on OS build 22621.1344. (f9d702e)
+* Weather: Fixed a bug that displayed the widget area using a different background color. (cc0af46)
+* Weather: Fixed a bug that might throw a script error when certain elements are not ready. (c083327)
+* Weather: Fixed a bug that could prevent the widget from properly loading. (a8c7fba)
+* ep_extra: Implemented a loadable module for Windows 7's Alt-Tab. (ca8ce13)
+* ep_extra: Implemented an `ep_extra`-based loader. (1f4b586)
+
 ## 22621.819.52
 
 Tested on OS builds 22621.819 and 22000.1098.
