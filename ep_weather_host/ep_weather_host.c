@@ -376,7 +376,7 @@ HRESULT STDMETHODCALLTYPE _epw_Weather_ExecuteDataScript(EPWeather* _this)
             LONG64 dwIconPack = InterlockedAdd(&_this->dwIconPack, 0);
             if (dwIconPack == EP_WEATHER_ICONPACK_MICROSOFT)
             {
-                swprintf_s(wszScriptData, EP_WEATHER_PROVIDER_GOOGLE_SCRIPT_LEN, L"%s%s%s%s", ep_weather_provider_google_script00, ep_weather_provider_google_script01, ep_weather_provider_google_script02, ep_weather_provider_google_script03);
+                swprintf_s(wszScriptData, EP_WEATHER_PROVIDER_GOOGLE_SCRIPT_LEN, L"%s%s%s%s%s%s", ep_weather_provider_google_script00, ep_weather_provider_google_script010, ep_weather_provider_google_script011, ep_weather_provider_google_script020, ep_weather_provider_google_script021, ep_weather_provider_google_script03);
             }
             else if (dwIconPack == EP_WEATHER_ICONPACK_GOOGLE)
             {
@@ -572,7 +572,8 @@ HRESULT STDMETHODCALLTYPE ICoreWebView2_NavigationCompleted(GenericObjectWithThi
         }
         else
         {
-            _epw_Weather_ExecuteDataScript(_this);
+            //_epw_Weather_ExecuteDataScript(_this);
+            SetTimer(_this->hWnd, EP_WEATHER_TIMER_EXECUTEDATASCRIPT, EP_WEATHER_TIMER_EXECUTEDATASCRIPT_DELAY, NULL);
         }
     }
     else
@@ -1002,6 +1003,12 @@ LRESULT CALLBACK epw_Weather_WindowProc(_In_ HWND hWnd, _In_ UINT uMsg, _In_ WPA
         {
             _this->cntResizeWindow++;
         }
+        return 0;
+    }
+    else if (uMsg == WM_TIMER && wParam == EP_WEATHER_TIMER_EXECUTEDATASCRIPT)
+    {
+        _epw_Weather_ExecuteDataScript(_this);
+        KillTimer(_this->hWnd, EP_WEATHER_TIMER_EXECUTEDATASCRIPT);
         return 0;
     }
     else if (uMsg == EP_WEATHER_WM_REBOUND_BROWSER)
