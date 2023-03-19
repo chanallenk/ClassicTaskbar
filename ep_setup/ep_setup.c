@@ -1269,6 +1269,12 @@ int WINAPI wWinMain(
                 wcscat_s(wszPath, MAX_PATH, L"\\WebView2Loader.dll");
                 bOk = InstallResource(bInstall, hInstance, IDR_MS_WEBVIEW2_LOADER, wszPath);
             }
+            if (bOk)
+            {
+                PathRemoveFileSpecW(wszPath);
+                wcscat_s(wszPath, MAX_PATH, L"\\SettingsLauncher.exe");
+                bOk = InstallResource(bInstall, hInstance, IDR_CSS_LAUNCHER, wszPath);
+            }
         }
 
         if (bOk)

@@ -13,7 +13,7 @@
     <Grid>
         <StackPanel
             x:Name="ContentArea">
-            <TextBlock x:Uid="Settings_Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
+            <!--<TextBlock x:Uid="Settings_Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />-->
             <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
                 <TextBlock x:Uid="Settings_Theme" />
 
@@ -48,19 +48,52 @@
                             <xaml:ElementTheme>Default</xaml:ElementTheme>
                         </RadioButton.CommandParameter>
                     </RadioButton>
+
+                    <TextBlock Margin="0 10" Text="Some changes may not take effect until restarting Windows Explorer" Style="{ThemeResource BodyTextBlockStyle}" />
+                    <Button FontSize="15" Content="Restart Windows Explorer" Command="{x:Bind ViewModel.CmdRestartExplorer}"/>
+                    
                 </StackPanel>
             </StackPanel>
 
-            <TextBlock x:Uid="Settings_About" Style="{ThemeResource SubtitleTextBlockStyle}" />
+            <TextBlock Margin="0 10 0 0" x:Uid="Settings_About" Style="{ThemeResource SubtitleTextBlockStyle}" />
 
             <StackPanel Margin="{StaticResource XSmallTopMargin}">
                 <TextBlock Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" />
 
-                <TextBlock
+
+                <TextBlock 
                     x:Uid="Settings_AboutDescription"
                     Margin="{StaticResource XSmallTopMargin}"
                     Style="{ThemeResource BodyTextBlockStyle}" />
+                
+
+                <TextBlock Text="{x:Bind ViewModel.CopyrightDescription, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Margin="0 10 0 0" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}">Based on&#160;</TextBlock>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+                        <Hyperlink NavigateUri="https://github.com/valinet/ExplorerPatcher/">Explorer Patcher</Hyperlink>
+                    </TextBlock>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}">&#160;© 2023 VALINET Solutions SRL</TextBlock>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}">Licensed under&#160;</TextBlock>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+                        <Hyperlink NavigateUri="https://github.com/chanallenk/ExplorerPatcher/blob/master/LICENSE">GNU GPLv2</Hyperlink>
+                    </TextBlock>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}">&#160;| download the source&#160;</TextBlock>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+                        <Hyperlink NavigateUri="https://github.com/chanallenk/ExplorerPatcher">here</Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+
+
+                <HyperlinkButton x:Uid="SettingsPage_EmailLink" Margin="{StaticResource SettingsPageHyperlinkButtonMargin}" Command="{x:Bind ViewModel.CmdEmailClick}"/>
+
+                <HyperlinkButton x:Uid="SettingsPage_DonateLink" Margin="{StaticResource SettingsPageHyperlinkButtonMargin}" />
+
                 <HyperlinkButton x:Uid="SettingsPage_PrivacyTermsLink" Margin="{StaticResource SettingsPageHyperlinkButtonMargin}" />
+                
             </StackPanel>
         </StackPanel>
     </Grid>

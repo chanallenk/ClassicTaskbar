@@ -217,16 +217,16 @@ __declspec(dllexport) CALLBACK ZZTestToast(HWND hWnd, HINSTANCE hInstance, LPSTR
             NULL
 #endif
         );
-        hr = ShowToastMessage(
-            inputXml,
-            APPID,
-            sizeof(APPID) / sizeof(TCHAR) - 1,
-#ifdef DEBUG
-            stdout
-#else
-            NULL
-#endif
-        );
+//        hr = ShowToastMessage(
+//            inputXml,
+//            APPID,
+//            sizeof(APPID) / sizeof(TCHAR) - 1,
+//#ifdef DEBUG
+//            stdout
+//#else
+//            NULL
+//#endif
+//        );
         free(buffer);
     }
     free(lpwszCmdLine);

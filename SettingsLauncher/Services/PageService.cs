@@ -3,6 +3,7 @@
 using Microsoft.UI.Xaml.Controls;
 
 using SettingsLauncher.Contracts.Services;
+using SettingsLauncher.Contracts.ViewModels;
 using SettingsLauncher.ViewModels;
 using SettingsLauncher.Views;
 
@@ -16,6 +17,17 @@ public class PageService : IPageService
     {
         Configure<MainViewModel, MainPage>();
         Configure<SettingsViewModel, SettingsPage>();
+        Configure<TaskbarViewModel, TaskbarPage>();
+        Configure<SystemTrayViewModel, SystemTrayPage>();
+        Configure<FileExplorerViewModel, FileExplorerPage>();
+        Configure<StartMenuViewModel, StartMenuPage>(); 
+        Configure<WindowSwitcherViewModel, WindowSwitcherPage>();
+
+        Configure<WeatherViewModel, WeatherPage>();
+        Configure<OtherViewModel, OtherPage>();
+        Configure<UpdatesViewModel, UpdatesPage>();
+        Configure<AdvancedViewModel, AdvancedPage>();
+        Configure<AboutViewModel, AboutPage>();
     }
 
     public Type GetPageType(string key)
@@ -53,4 +65,18 @@ public class PageService : IPageService
             _pages.Add(key, type);
         }
     }
+
+
+    private IEnumerable<Type> GetTypes<TControl>()
+    {
+        var type = typeof(TControl);
+
+        var types = AppDomain.CurrentDomain.GetAssemblies()
+            .SelectMany(s => s.GetTypes())
+            .Where(p => type.IsAssignableFrom(p));
+
+        return types;
+    }
+
+
 }

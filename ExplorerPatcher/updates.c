@@ -867,6 +867,9 @@ BOOL ShowUpdateSuccessNotification(
     DWORD dwSecondLeft = 0;
     DWORD dwSecondRight = 0;
     DWORD dwRightMost = 0;
+    notifier = 0;
+    notifFactory = 0;
+    toast = 0;
     QueryVersionInfo(hModule, VS_VERSION_INFO, &dwLeftMost, &dwSecondLeft, &dwSecondRight, &dwRightMost);
 
     __x_ABI_CWindows_CData_CXml_CDom_CIXmlDocument* inputXml = NULL;
@@ -932,6 +935,9 @@ BOOL InstallUpdatesIfAvailable(
     DWORD dwSecondLeft = 0;
     DWORD dwSecondRight = 0;
     DWORD dwRightMost = 0;
+    notifier = 0;
+    notifFactory = 0;
+    toast = 0;
     QueryVersionInfo(hModule, VS_VERSION_INFO, &dwLeftMost, &dwSecondLeft, &dwSecondRight, &dwRightMost);
 
     if (bAllocConsole)

@@ -8,7 +8,6 @@ using Microsoft.UI.Xaml;
 
 using SettingsLauncher.Contracts.Services;
 using SettingsLauncher.Helpers;
-
 using Windows.ApplicationModel;
 
 namespace SettingsLauncher.ViewModels;
@@ -16,8 +15,10 @@ namespace SettingsLauncher.ViewModels;
 public class SettingsViewModel : ObservableRecipient
 {
     private readonly IThemeSelectorService _themeSelectorService;
+    private readonly IExplorerService _explorerService;
     private ElementTheme _elementTheme;
     private string _versionDescription;
+    private string _copyrightDescription;
 
     public ElementTheme ElementTheme
     {
@@ -31,16 +32,34 @@ public class SettingsViewModel : ObservableRecipient
         set => SetProperty(ref _versionDescription, value);
     }
 
+    public string CopyrightDescription
+    {
+        get => _copyrightDescription;
+        set => SetProperty(ref _copyrightDescription, value);
+    }
+    
     public ICommand SwitchThemeCommand
     {
         get;
     }
 
-    public SettingsViewModel(IThemeSelectorService themeSelectorService)
+    public ICommand CmdEmailClick
+    {
+        get;
+    }
+
+    public ICommand CmdRestartExplorer
+    {
+        get;
+    }
+
+    public SettingsViewModel(IThemeSelectorService themeSelectorService, IExplorerService explorerService)
     {
         _themeSelectorService = themeSelectorService;
+        _explorerService = explorerService;
         _elementTheme = _themeSelectorService.Theme;
         _versionDescription = GetVersionDescription();
+        _copyrightDescription = GetCopyrightDescription();
 
         SwitchThemeCommand = new RelayCommand<ElementTheme>(
             async (param) =>
@@ -51,8 +70,30 @@ public class SettingsViewModel : ObservableRecipient
                     await _themeSelectorService.SetThemeAsync(param);
                 }
             });
+        CmdEmailClick = new RelayCommand(EmailClick);
+        CmdRestartExplorer = new RelayCommand(RestartExplorer);
     }
 
+    public void RestartExplorer()
+    {
+        try
+        {
+            _explorerService.Restart();
+        }
+        catch(Exception ex) { }
+    }
+
+    private async void EmailClick()
+    {
+        await Windows.System.Launcher.LaunchUriAsync(new Uri(string.Format("mailto:{0}?subject={1} {2}&body={3}", "chansoftwaresolutions@gmail.com", "Classic Toolbar Support", GetVersionDescription(), "")));
+    }
+
+    private static string GetCopyrightDescription()
+    {
+        int year = DateTime.Now.Year;
+
+        return $"© {year} Chan Software Solutions";
+    }
     private static string GetVersionDescription()
     {
         Version version;

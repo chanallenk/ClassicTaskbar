@@ -1,8 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
 
 using SettingsLauncher.Activation;
+using SettingsLauncher.Contexts;
 using SettingsLauncher.Contracts.Services;
 using SettingsLauncher.Core.Contracts.Services;
 using SettingsLauncher.Core.Services;
@@ -60,11 +62,22 @@ public partial class App : Application
             services.AddTransient<INavigationViewService, NavigationViewService>();
 
             services.AddSingleton<IActivationService, ActivationService>();
-            services.AddSingleton<IPageService, PageService>();
+            services.AddSingleton<IPageService, PageService>(); //possibly inherit the pageservice from a parent class
             services.AddSingleton<INavigationService, NavigationService>();
+            services.AddSingleton<IRegParserService, RegParserService>();
+            services.AddTransient<IExplorerService, ExplorerService>();
+
 
             // Core Services
+
             services.AddSingleton<IFileService, FileService>();
+#if !DEBUG
+            services.AddTransient<IRegistryService, RegistryService>(); //Prod
+#else
+            services.AddSingleton<IRegistryService, FileWriteRegService>(); //Test
+#endif
+            services.AddTransient<IResourceReaderService, ResourceReaderService>();
+            services.AddSingleton<IControlLogicService, ControlLogicService>();
 
             // Views and ViewModels
             services.AddTransient<SettingsViewModel>();
@@ -73,6 +86,31 @@ public partial class App : Application
             services.AddTransient<MainPage>();
             services.AddTransient<ShellPage>();
             services.AddTransient<ShellViewModel>();
+
+            services.AddTransient<TaskbarPage>();
+            services.AddTransient<TaskbarViewModel>();
+            services.AddTransient<SystemTrayPage>();
+            services.AddTransient<SystemTrayViewModel>();
+            services.AddTransient<FileExplorerPage>();
+            services.AddTransient<FileExplorerViewModel>();
+            services.AddTransient<StartMenuPage>();
+            services.AddTransient<StartMenuViewModel>();
+            services.AddTransient<WindowSwitcherPage>();
+            services.AddTransient<WindowSwitcherViewModel>();
+            services.AddTransient<WeatherPage>();
+            services.AddTransient<WeatherViewModel>();
+            services.AddTransient<OtherPage>();
+            services.AddTransient<OtherViewModel>();
+            services.AddTransient<UpdatesPage>();
+            services.AddTransient<UpdatesViewModel>();
+            services.AddTransient<AdvancedPage>();
+            services.AddTransient<AdvancedViewModel>();
+            services.AddTransient<AboutPage>();
+            services.AddTransient<AboutViewModel>();
+
+            services.AddTransient<RegSettingsContext>();
+            services.AddTransient<RegExclusionsContext>();
+            services.AddTransient<RegLogicalsContext>();
 
             // Configuration
             services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
@@ -93,5 +131,20 @@ public partial class App : Application
         base.OnLaunched(args);
 
         await App.GetService<IActivationService>().ActivateAsync(args);
+
+        App.GetService<IControlLogicService>()
+            .GenerateSettings(
+            App.GetService<IRegParserService>()
+                .ParseSettingsReg(
+                App.GetService<IResourceReaderService>()
+                    .ReadResourceAsString("SettingsLauncher.settings.reg")));
+
+        if (!await App.GetService<ILocalSettingsService>().ReadSettingAsync<bool>("IsLaterRun"))
+        {
+            //await App.GetService<ILocalSettingsService>().SaveSettingAsync("IsLaterRun", true);
+        }
+
+        App.GetService<INavigationService>().NavigateTo(typeof(TaskbarViewModel).FullName!, args.Arguments);
+        
     }
 }
