@@ -27,14 +27,9 @@ public class Windows11Version22H2OrHigherLogicalControl : LogicalControlBase, IL
             var displayVersion = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "DisplayVersion", "")?.ToString();
             var buildVersion = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "")?.ToString()?.ToInt();
 
-            if (buildVersion > 19045 || (displayVersion != null && Regex.IsMatch(displayVersion, "([2-9](([2-9][0-9a-zA-Z][2-9])|([3-9]..)))|([3-9]...)")))
-            {
-                returnVal =  true;
-            }
+            returnVal = (buildVersion > 19045 || (displayVersion != null && Regex.IsMatch(displayVersion, "([2-9](([2-9][0-9a-zA-Z][2-9])|([3-9]..)))|([3-9]...)")));
         }
         catch (Exception ex) { }
-
-        returnVal = false;
 
         return Inverted ? !(returnVal) : returnVal;
     }

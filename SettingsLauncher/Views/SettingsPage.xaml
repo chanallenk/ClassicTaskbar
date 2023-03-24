@@ -79,11 +79,11 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{ThemeResource BodyTextBlockStyle}">Licensed under&#160;</TextBlock>
                     <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
-                        <Hyperlink NavigateUri="https://github.com/chanallenk/ExplorerPatcher/blob/master/LICENSE">GNU GPLv2</Hyperlink>
+                        <Hyperlink NavigateUri="https://github.com/chanallenk/ClassicTaskbar/blob/master/LICENSE">GNU GPLv2</Hyperlink>
                     </TextBlock>
                     <TextBlock Style="{ThemeResource BodyTextBlockStyle}">&#160;| download the source&#160;</TextBlock>
                     <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
-                        <Hyperlink NavigateUri="https://github.com/chanallenk/ExplorerPatcher">here</Hyperlink>
+                        <Hyperlink NavigateUri="https://github.com/chanallenk/ClassicTaskbar">here</Hyperlink>
                     </TextBlock>
                 </StackPanel>
 

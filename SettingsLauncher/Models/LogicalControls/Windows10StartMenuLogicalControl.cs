@@ -21,19 +21,14 @@ public class Windows10StartMenuLogicalControl : LogicalControlBase, ILogical
 
     public override bool CanBeEnabled()
     {
-        bool returnVal;
+        bool returnVal = false;
         try
         {
             var oldStart = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "Start_ShowClassicMode", "")?.ToString()?.ToInt();
 
-            if (oldStart != null && oldStart > 0)
-            {
-                returnVal =  true;
-            }
+            returnVal = (oldStart != null && oldStart > 0);
         }
         catch (Exception ex) { }
-
-        returnVal = false;
 
         return Inverted ? !(returnVal) : returnVal;
     }
