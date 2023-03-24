@@ -37,6 +37,8 @@ public sealed partial class MainWindow : Window
 
         this.SetWindowSize(500, 400);
         this.CenterOnScreen();
+        this.Title = "Classic Taskbar Installer";
+        this.ExtendsContentIntoTitleBar = true;
 
         var manager = WinUIEx.WindowManager.Get(this);
         manager.Backdrop = new WinUIEx.MicaSystemBackdrop();
@@ -89,13 +91,10 @@ public sealed partial class MainWindow : Window
     {
         try
         {
-            //myButton.Content = "Clicked";
-
             string codeBase = Assembly.GetExecutingAssembly().CodeBase;
             UriBuilder uri = new UriBuilder(codeBase);
             string path = Uri.UnescapeDataString(uri.Path);
             string executableLocation = Path.GetDirectoryName(path) ?? string.Empty;
-
             var process = Process.Start($"{executableLocation}\\Executable\\ep_setup.exe");
         }
         catch { }

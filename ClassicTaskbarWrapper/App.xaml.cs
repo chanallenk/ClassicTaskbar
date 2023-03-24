@@ -45,37 +45,8 @@ public partial class App : Application
     /// <param name="args">Details about the launch request and process.</param>
     protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
     {
-        //if (!await App.GetService<ILocalSettingsService>().ReadSettingAsync<bool>("IsLaterRun"))
-        //{
-        //    //await App.GetService<ILocalSettingsService>().SaveSettingAsync("IsLaterRun", true);
-        //}
-
-        //check if ep_setup is installed. if it is not, then open the window
-        //what to do about double installed path?
-
         m_window = new MainWindow(500, 400);
         m_window.Activate(); 
-        return;
-
-        string programFiles = System.IO.Path.Combine(Environment.ExpandEnvironmentVariables("%ProgramW6432%"), "ClassicTaskbar", "SettingsLauncher.exe");
-
-        if (File.Exists(programFiles))
-        {
-            var process = Process.Start($"{programFiles}");
-
-
-            //todo - make a really small dummy window
-            //bug with winui where the application is unable to exit unless there is a window
-            //https://github.com/microsoft/microsoft-ui-xaml/issues/5931
-            m_window = new MainWindow(1, 1);
-            m_window.Activate();
-            Application.Current.Exit();
-        }
-        else
-        {
-            m_window = new MainWindow(500, 400);
-            m_window.Activate();
-        }
     }
 
     private Window m_window;

@@ -862,14 +862,14 @@ BOOL ShowUpdateSuccessNotification(
     __x_ABI_CWindows_CUI_CNotifications_CIToastNotification** toast
 )
 {
+    SwitchToThread();
+    return FALSE;
+
     wchar_t buf[TOAST_BUFSIZ];
     DWORD dwLeftMost = 0;
     DWORD dwSecondLeft = 0;
     DWORD dwSecondRight = 0;
     DWORD dwRightMost = 0;
-    notifier = 0;
-    notifFactory = 0;
-    toast = 0;
     QueryVersionInfo(hModule, VS_VERSION_INFO, &dwLeftMost, &dwSecondLeft, &dwSecondRight, &dwRightMost);
 
     __x_ABI_CWindows_CData_CXml_CDom_CIXmlDocument* inputXml = NULL;
@@ -927,6 +927,8 @@ BOOL InstallUpdatesIfAvailable(
     DWORD dwUpdatePolicy
 )
 {
+    return FALSE;
+
     wchar_t wszInfoURL[MAX_PATH];
     ZeroMemory(wszInfoURL, MAX_PATH * sizeof(wchar_t));
     wcscat_s(wszInfoURL, MAX_PATH, _T(UPDATES_RELEASE_INFO_URL_STABLE));
@@ -935,9 +937,6 @@ BOOL InstallUpdatesIfAvailable(
     DWORD dwSecondLeft = 0;
     DWORD dwSecondRight = 0;
     DWORD dwRightMost = 0;
-    notifier = 0;
-    notifFactory = 0;
-    toast = 0;
     QueryVersionInfo(hModule, VS_VERSION_INFO, &dwLeftMost, &dwSecondLeft, &dwSecondRight, &dwRightMost);
 
     if (bAllocConsole)
