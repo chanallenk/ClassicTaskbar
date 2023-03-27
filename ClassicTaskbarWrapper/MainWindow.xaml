@@ -1,0 +1,22 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Window
+    x:Class="ClassicTaskbarWrapper.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ClassicTaskbarWrapper"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Margin="15 0 15 15" FontSize="22" FontWeight="SemiBold" Text="Welcome to Classic Taskbar Installer"/>
+
+        <Image Margin="15" Source="/Assets/Gradient_Blue_300.png" Width="100" Height="100"/>
+
+        <Button x:Name="InstallButton" Visibility="Collapsed" Margin="15" FontSize="16" Width="240" Height="40" HorizontalAlignment="Center" Click="InstallClicked">Install Windows 10 Taskbar</Button>
+        <Button x:Name="UninstallButton" Visibility="Collapsed" Margin="15" FontSize="16" Width="240" Height="40" HorizontalAlignment="Center" Click="UninstallClicked">Uninstall Windows 10 Taskbar</Button>
+        <Button x:Name="SettingsButton" Visibility="Collapsed" FontSize="16" Width="240" Height="40" HorizontalAlignment="Center" Click="SettingsClicked">Taskbar Settings</Button>
+    </StackPanel>
+</Window>

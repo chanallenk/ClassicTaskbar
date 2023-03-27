@@ -12452,17 +12452,9 @@ HRESULT EntryPoint(DWORD dwMethod)
                     wchar_t* msg = calloc(sizeof(wchar_t), 10000);
                     swprintf_s(msg, 10000,
                         L"It seems that File Explorer closed unexpectedly %s in less than %d seconds each time when starting up. "
-                        L"This might indicate a problem caused by ExplorerPatcher, which might be unaware of recent changes in Windows, for example "
+                        L"This might indicate a problem caused by ClassicTaskbar, which might be unaware of recent changes in Windows, for example "
                         L"when running on a new OS build.\n"
-                        L"Here are a few recommendations:\n"
-                        L"\u2022 If an updated version is available, you can <A HREF=\"eplink://update\">update ExplorerPatcher and restart File Explorer</A>.\n"
-                        L"\u2022 On GitHub, you can <A HREF=\"https://github.com/valinet/ExplorerPatcher/releases\">view releases</A>, <A HREF=\"https://github.com/valinet/ExplorerPatcher/discussions/1102\">check the current status</A>, <A HREF=\"https://github.com/valinet/ExplorerPatcher/discussions\">discuss</A> or <A HREF=\"https://github.com/valinet/ExplorerPatcher/issues\">review the latest issues</A>.\n"
-                        L"\u2022 If you suspect this is not caused by ExplorerPatcher, please uninstall any recently installed shell extensions or similar utilities.\n"
-                        L"\u2022 If no fix is available for the time being, you can <A HREF=\"%s\">uninstall ExplorerPatcher</A>, and then later reinstall it when a fix is published on "
-                        L"GitHub. Rest assured, even if you uninstall, your program configuration will be preserved.\n"
-                        L"\n"
-                        L"I am sorry for the inconvenience this might cause; I am doing my best to try to keep this program updated and working.\n\n"
-                        L"ExplorerPatcher is disabled until the next File Explorer restart, in order to allow you to perform maintenance tasks and take the necessary actions.",
+                        L"ClassicTaskbar is disabled until the next File Explorer restart.",
                         times, crashThresholdTime / 1000, uninstallLink);
                     SHCreateThread(InformUserAboutCrash, msg, 0, NULL);
                     IncrementDLLReferenceCount(hModule);

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ClassicTaskbarWrapper (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "ClassicTaskbarWrapper (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -862,6 +862,9 @@ BOOL ShowUpdateSuccessNotification(
     __x_ABI_CWindows_CUI_CNotifications_CIToastNotification** toast
 )
 {
+    SwitchToThread();
+    return FALSE;
+
     wchar_t buf[TOAST_BUFSIZ];
     DWORD dwLeftMost = 0;
     DWORD dwSecondLeft = 0;
@@ -924,6 +927,8 @@ BOOL InstallUpdatesIfAvailable(
     DWORD dwUpdatePolicy
 )
 {
+    return FALSE;
+
     wchar_t wszInfoURL[MAX_PATH];
     ZeroMemory(wszInfoURL, MAX_PATH * sizeof(wchar_t));
     wcscat_s(wszInfoURL, MAX_PATH, _T(UPDATES_RELEASE_INFO_URL_STABLE));

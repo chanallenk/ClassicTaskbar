@@ -217,16 +217,16 @@ __declspec(dllexport) CALLBACK ZZTestToast(HWND hWnd, HINSTANCE hInstance, LPSTR
             NULL
 #endif
         );
-        hr = ShowToastMessage(
-            inputXml,
-            APPID,
-            sizeof(APPID) / sizeof(TCHAR) - 1,
-#ifdef DEBUG
-            stdout
-#else
-            NULL
-#endif
-        );
+//        hr = ShowToastMessage(
+//            inputXml,
+//            APPID,
+//            sizeof(APPID) / sizeof(TCHAR) - 1,
+//#ifdef DEBUG
+//            stdout
+//#else
+//            NULL
+//#endif
+//        );
         free(buffer);
     }
     free(lpwszCmdLine);
@@ -444,50 +444,18 @@ int ComputeFileHash2(HMODULE hModule, LPCWSTR filename, LPSTR hash, DWORD dwHash
 
 void LaunchPropertiesGUI(HMODULE hModule)
 {
-    //CreateThread(0, 0, ZZGUI, 0, 0, 0);
-    wchar_t wszPath[MAX_PATH * 2];
-    ZeroMemory(
-        wszPath,
-        (MAX_PATH * 2) * sizeof(wchar_t)
-    );
-    wszPath[0] = '\"';
-    GetSystemDirectoryW(
-        wszPath + 1,
-        MAX_PATH
-    );
-    wcscat_s(
-        wszPath,
-        MAX_PATH * 2,
-        L"\\rundll32.exe\" \""
-    );
-    GetModuleFileNameW(
-        hModule,
-        wszPath + wcslen(wszPath),
-        MAX_PATH
-    );
-    wcscat_s(
-        wszPath,
-        MAX_PATH * 2,
-        L"\",ZZGUI"
-    );
-    wprintf(L"Launching : %s\n", wszPath);
+    WCHAR wszRundll32[MAX_PATH];
+    SHGetFolderPathW(NULL, SPECIAL_FOLDER, NULL, SHGFP_TYPE_CURRENT, wszRundll32);
+    wcscat_s(wszRundll32, MAX_PATH, _T(APP_RELATIVE_PATH));
+    wcscat_s(wszRundll32, MAX_PATH, L"\\SettingsLauncher.exe");
+
     STARTUPINFO si;
     ZeroMemory(&si, sizeof(STARTUPINFO));
     si.cb = sizeof(si);
     PROCESS_INFORMATION pi;
     ZeroMemory(&pi, sizeof(PROCESS_INFORMATION));
-    if (CreateProcessW(
-        NULL,
-        wszPath,
-        NULL,
-        NULL,
-        FALSE,
-        CREATE_UNICODE_ENVIRONMENT,
-        NULL,
-        NULL,
-        &si,
-        &pi
-    ))
+
+    if (CreateProcess(wszRundll32, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi))
     {
         CloseHandle(pi.hThread);
         CloseHandle(pi.hProcess);

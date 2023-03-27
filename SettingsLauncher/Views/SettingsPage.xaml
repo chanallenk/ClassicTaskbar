@@ -1,0 +1,100 @@
+﻿<Page
+    x:Class="SettingsLauncher.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helpers="using:SettingsLauncher.Helpers"
+    xmlns:xaml="using:Microsoft.UI.Xaml"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <helpers:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+    </Page.Resources>
+    <Grid>
+        <StackPanel
+            x:Name="ContentArea">
+            <!--<TextBlock x:Uid="Settings_Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />-->
+            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                <TextBlock x:Uid="Settings_Theme" />
+
+                <StackPanel Margin="{StaticResource XSmallTopMargin}">
+                    <RadioButton
+                        x:Uid="Settings_Theme_Light"
+                        Command="{x:Bind ViewModel.SwitchThemeCommand}"
+                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
+                        FontSize="15"
+                        GroupName="AppTheme">
+                        <RadioButton.CommandParameter>
+                            <xaml:ElementTheme>Light</xaml:ElementTheme>
+                        </RadioButton.CommandParameter>
+                    </RadioButton>
+                    <RadioButton
+                        x:Uid="Settings_Theme_Dark"
+                        Command="{x:Bind ViewModel.SwitchThemeCommand}"
+                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
+                        FontSize="15"
+                        GroupName="AppTheme">
+                        <RadioButton.CommandParameter>
+                            <xaml:ElementTheme>Dark</xaml:ElementTheme>
+                        </RadioButton.CommandParameter>
+                    </RadioButton>
+                    <RadioButton
+                        x:Uid="Settings_Theme_Default"
+                        Command="{x:Bind ViewModel.SwitchThemeCommand}"
+                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
+                        FontSize="15"
+                        GroupName="AppTheme">
+                        <RadioButton.CommandParameter>
+                            <xaml:ElementTheme>Default</xaml:ElementTheme>
+                        </RadioButton.CommandParameter>
+                    </RadioButton>
+
+                    <TextBlock Margin="0 10" Text="Some changes may not take effect until restarting Windows Explorer" Style="{ThemeResource BodyTextBlockStyle}" />
+                    <Button FontSize="15" Content="Restart Windows Explorer" Command="{x:Bind ViewModel.CmdRestartExplorer}"/>
+                    
+                </StackPanel>
+            </StackPanel>
+
+            <TextBlock Margin="0 10 0 0" x:Uid="Settings_About" Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+            <StackPanel Margin="{StaticResource XSmallTopMargin}">
+                <TextBlock Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" />
+
+
+                <TextBlock 
+                    x:Uid="Settings_AboutDescription"
+                    Margin="{StaticResource XSmallTopMargin}"
+                    Style="{ThemeResource BodyTextBlockStyle}" />
+                
+
+                <TextBlock Text="{x:Bind ViewModel.CopyrightDescription, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Margin="0 10 0 0" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}">Based on&#160;</TextBlock>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+                        <Hyperlink NavigateUri="https://github.com/valinet/ExplorerPatcher/">Explorer Patcher</Hyperlink>
+                    </TextBlock>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}">&#160;© 2023 VALINET Solutions SRL</TextBlock>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}">Licensed under&#160;</TextBlock>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+                        <Hyperlink NavigateUri="https://github.com/chanallenk/ClassicTaskbar/blob/master/LICENSE">GNU GPLv2</Hyperlink>
+                    </TextBlock>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}">&#160;| download the source&#160;</TextBlock>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+                        <Hyperlink NavigateUri="https://github.com/chanallenk/ClassicTaskbar">here</Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+
+
+                <HyperlinkButton x:Uid="SettingsPage_EmailLink" Margin="{StaticResource SettingsPageHyperlinkButtonMargin}" Command="{x:Bind ViewModel.CmdEmailClick}"/>
+
+                <HyperlinkButton x:Uid="SettingsPage_DonateLink" Margin="{StaticResource SettingsPageHyperlinkButtonMargin}" />
+
+                <HyperlinkButton x:Uid="SettingsPage_PrivacyTermsLink" Margin="{StaticResource SettingsPageHyperlinkButtonMargin}" />
+                
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

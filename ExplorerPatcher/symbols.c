@@ -114,16 +114,16 @@ DWORD DownloadSymbols(DownloadSymbolsParams* params)
             NULL
 #endif
         );
-        hr = ShowToastMessage(
-            inputXml,
-            APPID,
-            sizeof(APPID) / sizeof(TCHAR) - 1,
-#ifdef DEBUG
-            stdout
-#else
-            NULL
-#endif
-        );
+//        hr = ShowToastMessage(
+//            inputXml,
+//            APPID,
+//            sizeof(APPID) / sizeof(TCHAR) - 1,
+//#ifdef DEBUG
+//            stdout
+//#else
+//            NULL
+//#endif
+//        );
     }
     wprintf(
         L"[Symbols] "
@@ -695,16 +695,16 @@ DWORD DownloadSymbols(DownloadSymbolsParams* params)
             NULL
 #endif
         );
-        hr = ShowToastMessage(
-            inputXml,
-            APPID,
-            sizeof(APPID) / sizeof(TCHAR) - 1,
-#ifdef DEBUG
-            stdout
-#else
-            NULL
-#endif
-        );
+//        hr = ShowToastMessage(
+//            inputXml,
+//            APPID,
+//            sizeof(APPID) / sizeof(TCHAR) - 1,
+//#ifdef DEBUG
+//            stdout
+//#else
+//            NULL
+//#endif
+//        );
         Sleep(4000);
         exit(0);
     }
@@ -726,16 +726,16 @@ DWORD DownloadSymbols(DownloadSymbolsParams* params)
             NULL
 #endif
         );
-        hr = ShowToastMessage(
-            inputXml2,
-            APPID,
-            sizeof(APPID) / sizeof(TCHAR) - 1,
-#ifdef DEBUG
-            stdout
-#else
-            NULL
-#endif
-        );
+//        hr = ShowToastMessage(
+//            inputXml2,
+//            APPID,
+//            sizeof(APPID) / sizeof(TCHAR) - 1,
+//#ifdef DEBUG
+//            stdout
+//#else
+//            NULL
+//#endif
+//        );
     }
 
     printf("[Symbols] Finished \"Download symbols\" thread.\n");
