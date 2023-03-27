@@ -9,7 +9,7 @@
   <Identity Name="48405AmbientSoftware.ClassicTaskbar" Publisher="CN=61773884-FD83-4DAD-91D2-1ECD4DCEF5D4" Version="1.0.0.0" ProcessorArchitecture="x64" />
 
   <Properties>
-    <DisplayName>Classic Taskbar Installer</DisplayName>
+    <DisplayName>Classic Taskbar</DisplayName>
     <PublisherDisplayName>Chan Software Solutions</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -28,7 +28,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="Classic Taskbar Installer"
+        DisplayName="Classic Taskbar"
         Description="Installs the classic Windows 10 Taskbar and Settings Launcher"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"

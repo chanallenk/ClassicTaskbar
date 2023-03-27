@@ -47,7 +47,7 @@
 
 	
 	
-  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64' AND Exists('..\build\Release\ep_setup.exe')">
     <Content Include="..\build\Release\ep_setup.exe">
       <Link>Executable\%(RecursiveDir)%(FileName)%(Extension)</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
